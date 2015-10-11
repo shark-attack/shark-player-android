@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="15dip"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+    android:paddingBottom="15dip">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="0dip"
+        android:layout_marginRight="80dip">
+
+        <TextView
+            android:id="@+id/artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="20dp"
+            android:textColor="#fafafa"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            android:typeface="sans"/>
+
+        <TextView
+            android:id="@+id/songtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#9a7a7a"
+            android:textSize="20dip"
+            android:textStyle="italic"
+            android:typeface="sans"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dip"
+                android:textColor="#77201b"
+                android:textSize="10dip"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="#cb7537"
+                android:textColorLink="#cb7537"
+                android:textSize="15dip"
+                android:textStyle="bold"
+                android:linksClickable="true"
+                android:typeface="sans"
+                android:autoLink="web"/>
+
+            <TextView
+                android:text="on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:textColor="#77201b"
+                android:textSize="10dip"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="#77201b"
+                android:textSize="10dip"
+                android:textStyle="bold"
+                android:typeface="sans"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingBottom ="10dip"
+        android:textColor="#9a9a9a"
+        android:layout_alignParentRight="true"
+        android:textSize="30dip"
+        android:textStyle="bold"
+        android:typeface="sans" android:text="{0:00}" android:layout_gravity="center"
+        android:layout_marginRight="0dip"/>
+
+</RelativeLayout>

@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sharkattack.MainActivityFragment"
+    android:background="#1a1a1a">
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/playlist"
+        android:choiceMode="singleChoice"
+        android:clickable="true"
+        android:divider="#4a4a4a"
+        android:dividerHeight="1px"
+        android:layout_marginBottom="80dp"
+        android:layout_marginTop="0px"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:id="@+id/mediaController"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"
+        android:gravity="center|right"
+        android:background="@drawable/buttonbargradient"
+        android:paddingRight="10dp">
+
+        <ImageButton
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/play_button"
+            android:background="@drawable/play_btn" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:id="@+id/downloadstatus"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"
+        android:gravity="center|center"
+        android:visibility="gone"
+        android:background="#aa4455"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:text="dffsdf"
+            android:id="@+id/downloadstatustext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#77201b"
+            android:textSize="20dip"
+            android:textStyle="bold"
+            android:typeface="sans" />
+
+    </LinearLayout>
+
+</RelativeLayout>
