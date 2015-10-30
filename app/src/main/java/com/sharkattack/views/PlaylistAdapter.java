@@ -53,12 +53,14 @@ public class PlaylistAdapter extends ArrayAdapter<Asset> {
 
             artist.setText(a.artist);
             artist.setTypeface(boldTF);
+            src.setText(Html.fromHtml("<a href='" + a.page + "'>" + a.sourcelabel + "</a>"));
         } else {
+            artist.setText("Shark Attack");
             songtitle.setText(a.label);
             songtitle.setTypeface(lightTF);
+            src.setText("Shark Attack");
         }
 
-        src.setText(Html.fromHtml("<a href='" + a.page + "'>" + a.sourcelabel + "</a>"));
         src.setTypeface(normalTF);
 
         date.setText( (a.date.get(Calendar.MONTH) +1) + "/" + a.date.get(Calendar.DATE));

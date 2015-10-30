@@ -1,6 +1,11 @@
 package com.sharkattack;
 
 import android.app.FragmentManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.media.AudioManager;
+import android.os.Build;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -45,6 +51,23 @@ public class MainActivity extends AppCompatActivity {
      * initialize player and data
      */
     protected void initPlayer() {
+        final AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        final AudioManager.OnAudioFocusChangeListener afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+            public void onAudioFocusChange(int focusChange) {
+                if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+                    player.getPlayer().pause();
+                } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                    player.getPlayer().resume();
+                } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                    player.getPlayer().stop();
+                } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                    // Lower the volume
+                } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                    // Raise it back to normal
+                }
+            }
+        };
+
         player = new PlaylistedAudioPlayer();
         final ImageButton playBtn = (ImageButton) findViewById(R.id.play_button);
         player.getPlayer().setOnMediaListener(new OnMediaListener() {
@@ -81,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         player.setOnPlaylistListener(new OnPlaylistListener() {
             @Override
             public void onPlaylistLoaded(List<Asset> pls) {
@@ -93,21 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPlaylistAssetChange(Asset a) {
-                /*if (VERSION.SDK_INT >= 16) {
-                    Notification notification = new Notification.Builder(context)
-                            .setContentTitle("Blastanova: Now Playing")
-                            .setContentText(a.label)
-                                    //  .setSmallIcon(R.drawable.play_btn)
-                            .build();
-
-                    notification.flags |= Notification.FLAG_ONGOING_EVENT;
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    notificationManager.notify(0, notification);*/
-               // }
-
-                //Button playBtn = (Button) findViewById(R.id.play_button);
-                // playBtn.setBackgroundResource(R.drawable.pause_btn);
-
                 ListView l = (ListView) findViewById(R.id.playlist);
                 l.setItemChecked(player.getIndexOfAsset(a), true);
             }
@@ -132,12 +141,6 @@ public class MainActivity extends AppCompatActivity {
         adapter = new PlaylistAdapter(pls, this);
         final FragmentManager f = getFragmentManager();
         ListView l = (ListView) findViewById(R.id.playlist);
-        /*l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                return false;
-            }
-        });
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -152,17 +155,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
-        });*/
-        //l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-        ///@Override
-            /*public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AssetDialog d = new AssetDialog();
-                d.setAsset(player.getAssetAt(i));
-                d.show(f, "Currently Playing");
-                return false;
+            public void onNothingSelected(AdapterView<?> adapterView) {
             }
-        });*/
+        });
 
         // set header label
         //TextView label = (TextView) findViewById(R.id.playlistLabel);

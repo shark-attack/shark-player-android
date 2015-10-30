@@ -133,7 +133,6 @@ public class Playlist {
                 index = pls.size();
             }
         }
-
         listener.onPlaylistAssetChange(current());
         return current();
     }
@@ -205,7 +204,7 @@ public class Playlist {
      */
     public int getIndexOfAsset(Asset a) {
         for (int c = 0; c < pls.size(); c++ ) {
-            if (pls.get(c).media.equals(a.media)) {
+            if (pls.get(c).filename.equals(a.filename)) {
                 setAssetIndex(c);
                 return c;
             }

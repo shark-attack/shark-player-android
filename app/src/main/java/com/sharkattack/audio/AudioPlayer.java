@@ -68,6 +68,30 @@ public class AudioPlayer {
     }
 
     /**
+     * resume
+     */
+    public void resume() {
+        if (isPaused && mp != null && isPrepared) {
+            mp.start();
+        }
+    }
+
+    /**
+     * pause
+     */
+    public void pause() {
+        if (mp != null && isPrepared) {
+            mp.pause();
+            isPaused = true;
+            isPlaying = false;
+            for (OnMediaListener listener : listeners) {
+                MediaEvent me = new MediaEvent(MediaEvent.MEDIA_PAUSE);
+                listener.onMediaEvent(me);
+            }
+        }
+    }
+
+    /**
      * is player idle
      * @return
      */
