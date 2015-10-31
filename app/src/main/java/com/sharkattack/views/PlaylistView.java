@@ -18,10 +18,12 @@ public class PlaylistView extends ListView {
      */
     public PlaylistView(Context context) {
         super(context);
+        setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
 
     public PlaylistView(Context context, AttributeSet aSet) {
         super(context, aSet);
+        setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
 
     /**

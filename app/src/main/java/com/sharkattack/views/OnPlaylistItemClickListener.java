@@ -22,7 +22,6 @@ public class OnPlaylistItemClickListener implements View.OnClickListener {
      * @param v
      */
     public void onClick(View v) {
-        System.out.println("position " + asset.title + " clicked.");
     }
 
     /**
